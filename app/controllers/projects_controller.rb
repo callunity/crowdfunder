@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @tier = Tier.new
   end
 
   def create
@@ -36,7 +37,7 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :description, :goal, :start_date, :end_date)
+    params.require(:project).permit(:name, :description, :goal, :start_date, :end_date, tiers_attributes: [:description, :amount, :_destroy])
   end
 
 end

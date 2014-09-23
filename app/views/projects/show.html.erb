@@ -1,4 +1,20 @@
-  <h2><%= @project.name %></h2>
-  $<%= @project.goal %><br>
-  <%= @project.description %><br>
-  <%= @project.end_date %>
+<h2><%= @project.name %></h2>
+
+<div class="goal">
+  <h3>Funding Goal: $<%= @project.goal %></h3>
+  <% if @project_end_date %>
+    <p>Project end date: <%= @project.end_date %></p>
+  <% end %>
+</div>
+
+<div class="description">
+  <p><%= @project.description %></p>
+</div>
+
+<div class="tiers">
+  <h3>Pledge Tiers</h3>
+  <% @project.tiers.each do |tier| %>
+    <p><strong>Pledge $<%= tier.amount %></strong><br>
+    <strong>Get </strong><%= tier.description %></p>
+  <% end %>
+</div>

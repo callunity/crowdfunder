@@ -1,19 +1,33 @@
-<%= form_for @project  do |p| %>
-
-  <div>
-    <%= p.label :name %>
-    <%= p.text_field :name %>
+<%= form_for @project  do |f| %>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <br>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :description %>
+    <br>
+    <%= f.text_area :description %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :goal %> 
+    <br>
+    <%= f.text_field :goal %>
+  
+  <h3>Pledge Tiers</h3>
+  
+  <div id="tiers">
+    <%= f.fields_for :tiers do |tier| %>
+      <%= render 'tier_fields', :f => tier %>
+    <% end %>
+  </div>
+  
+  <div class="links">
+      <%= link_to_add_association 'add tier', f, :tiers %>
   </div>
 
-  <div>
-    <%= p.label :description %>
-    <%= p.text_area :description %>
-  </div>
-
-  <div>
-    <%= p.label :goal %>
-    <%= p.text_field :goal %>
-  </div>
-
-  <%= p.submit %>
+  <div class="actions"><%= f.submit %></div>
 <% end %>
