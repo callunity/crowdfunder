@@ -29,7 +29,10 @@ gem 'spring',        group: :development
 gem 'quiet_assets',  group: :development
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+# Using Cocoon to nest forms
+gem 'cocoon'
 
 # Use unicorn as the app server
 # gem 'unicorn'

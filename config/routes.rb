@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :projects
+  resources :projects do
+    resources :tiers, only: [:new, :create, :show, :destroy]
+  end
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 
