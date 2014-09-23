@@ -1,0 +1,10 @@
+<h1>SUPER COOL PROJECTS</h1>
+
+<div id="all-projects">
+  <% @projects.each do |project| %>
+    <%= project.name %><br>
+    <%= project.description %><br>
+    <%= project.goal %><br>
+    <%= project.end_date %>
+  <% end %>
+</div>
