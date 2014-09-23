@@ -2,9 +2,10 @@
 
 <div id="all-projects">
   <% @projects.each do |project| %>
-    <%= project.name %><br>
+    <p><%= link_to project.name, project_path(project) %><br>
     <%= project.description %><br>
-    <%= project.goal %><br>
+    Goal: $<%= project.goal %><br>
     <%= project.end_date %>
+    </p>
   <% end %>
 </div>

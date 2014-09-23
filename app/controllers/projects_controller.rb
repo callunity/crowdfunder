@@ -5,11 +5,17 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    
+    @project = Project.new
   end
 
   def create
-    
+    @project = Project.create(project_params)
+
+    if @project.save
+      redirect_to project_path(@project)
+    else
+      render :new, flash: "Error! Please try again"
+    end
   end
 
   def show
