@@ -8,7 +8,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: seat_yourself_development
+  database: crowdfunder_development
   pool: 5
 
 # Warning: The database defined as "test" will be erased and
@@ -18,12 +18,12 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: seat_yourself_test
+  database: crowdfunder_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: seat_yourself_production
+  database: crowdfunder_production
   pool: 5
