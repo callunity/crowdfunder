@@ -1,0 +1,8 @@
+<% @pledges.each do |pledge| %>
+  <div class="pledge">
+    <h3><%= link_to pledge.tier.project.name, project_path(pledge.tier.project) %></h3>
+    <p><strong><%= pledge.amount %></strong><br>
+      <%= pledge.tier.description %>
+    </p>
+  </div>
+<% end %>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :show] do
-    resources :pledges, only: [:create, :show, :destroy]
+    resources :pledges, only: [:index, :create, :show, :destroy]
   end
     post 'pledge' => 'pledges#new_pledge'
 

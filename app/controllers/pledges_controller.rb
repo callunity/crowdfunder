@@ -1,8 +1,10 @@
 class PledgesController < ApplicationController
 
+  def index
+    @pledges = Pledge.where('backer_id = ?', params[:user_id])
+  end
+
   def create
-
-
   end
 
 
