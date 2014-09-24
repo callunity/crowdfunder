@@ -15,7 +15,11 @@
   <h3>Pledge Tiers</h3>
   <% @project.tiers.each do |tier| %>
     <p><strong>Pledge $<%= tier.amount %></strong><br>
-    <strong>Get: </strong><%= tier.description %></p>
+    <strong>Get: </strong><%= tier.description %><br>
+
+    <%= button_to "Get this!", pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount } %>
+
+    </p> 
   <% end %>
 </div>
 

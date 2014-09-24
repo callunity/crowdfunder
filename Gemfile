@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Using Cocoon to nest forms
 gem 'cocoon'
 
+gem 'pry-rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
