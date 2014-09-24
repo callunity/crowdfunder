@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      auto_login
       redirect_to projects_path, notice: "Signed up!"
     else 
       render :new
@@ -22,4 +23,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
+
+  def auto_login
+    session[:user_id] = @user.id
+    current_user = @user
+  end
+  helper_method :auto_login
+
 end
