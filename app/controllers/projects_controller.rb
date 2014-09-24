@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @tier = Tier.new
+    @project.tiers.new
   end
 
   def create
