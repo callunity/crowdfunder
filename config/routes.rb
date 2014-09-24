@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get 'login' => 'sessions#new'
-  get 'logout' => 'sessions#destroy'
+  post 'logout' => 'sessions#destroy'
 
   resources :projects do
     resources :tiers, only: [:new, :create, :show, :destroy]
