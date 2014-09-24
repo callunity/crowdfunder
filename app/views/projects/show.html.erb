@@ -2,9 +2,9 @@
 
 <div class="goal">
   <h3>Funding Goal: $<%= @project.goal %></h3>
-  <% if @project_end_date %>
-    <p>Project end date: <%= @project.end_date %></p>
-  <% end %>
+
+  <p>Project start date: <%= @project.start_date.to_date.to_s(:long_ordinal) if @project.start_date %></p>
+  <p>Project end date: <%= @project.end_date.to_date.to_s(:long_ordinal) if @project.start_date %></p>
 </div>
 
 <div class="description">
