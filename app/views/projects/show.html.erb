@@ -18,7 +18,7 @@
     <strong>Get: </strong><%= tier.description %><br>
     
     <% if current_user.id != @project.owner_id %>
-    <%= button_to "Get this!", pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount } %>
+      <%= button_to "Get this!", pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount } %>
     <% end %>
 
     </p> 
