@@ -12,12 +12,26 @@ class User < ActiveRecord::Base
     self.pledges.inject(0) { |sum, pledge| sum + pledge.amount }
   end
 
+  # these projects' end date has passed
   def successful_backed_projects
     self.backed_projects.select { |project| project.end_date < Time.now }
   end
 
+  # these projects' end date is in the future
   def unexpired_projects
     self.backed_projects.select { |project| project.end_date > Time.now }
+  end
+
+  # these pledges refer to projects whose end date has passed
+  def collected_pledges
+    pledges = self.pledges.select { |pledge| pledge.project.end_date < Time.now}
+    pledges.inject(0) { |sum, pledge| sum + pledge.amount }
+  end
+
+  # these pledges refer to projects whose fate is still unknown
+  def uncommitted_pledges
+    pledges = self.pledges.select { |pledge| pledge.project.end_date > Time.now}
+    pledges.inject(0) { |sum, pledge| sum + pledge.amount }
   end
 
 end
