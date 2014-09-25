@@ -2,5 +2,6 @@ class Pledge < ActiveRecord::Base
 
   belongs_to :backer, class_name: "User"
   belongs_to :tier
-  delegate :project, to: :tier
+  has_one :project, through: :tier, autosave: false
+
 end
