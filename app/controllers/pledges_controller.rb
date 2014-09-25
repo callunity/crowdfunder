@@ -5,11 +5,7 @@ class PledgesController < ApplicationController
   end
 
   def create
-  end
-
-
-  def new_pledge
-    @pledge = Pledge.create()
+    @pledge = Pledge.new()
     @pledge.backer_id = current_user.id
     @pledge.tier_id = params[:tier]
     @pledge.amount = params[:amount]
