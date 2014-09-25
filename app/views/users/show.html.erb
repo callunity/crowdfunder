@@ -2,5 +2,22 @@
 <p><%= @user.email %></p>
 
 <div class="backed-projects">
-  <% @user.projects.each do | %>
+<h3><%= @user.first_name %> has backed <%= @user.backed_projects.count %> projects:</h3>
+  
+  <h4>Successfully funded projects</h4>
+  <% @user.successful_backed_projects.each do |project| %>
+      <h5><%= link_to project.name, project_path(project) %></h5>
+  <% end %>
+
+  <h4>Projects still running</h4>
+  <% @user.unexpired_projects.each do |project| %>
+    <h5><%= link_to project.name, project_path(project) %></h5>
+  <% end %>
+
 </div>
+
+<% if @user == current_user %>
+  <div class="backed-money">
+    <p>You've contributed $<%= @user.total_money %> towards <%= @user.successful_backed_projects.length %> projects!</p>
+  </div>
+<% end %>
