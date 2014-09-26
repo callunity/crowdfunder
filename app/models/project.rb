@@ -21,4 +21,8 @@ class Project < ActiveRecord::Base
   def is_expired
     self.end_date < Time.now
   end
+
+  def end_date_display
+    self.end_date.to_time.strftime('%A, %B %e, %Y')
+  end
 end

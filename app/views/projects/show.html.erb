@@ -9,8 +9,8 @@
   <% end %>
 
   <!-- # cut out this conditional when seeds are fixed -->
-  <% if @project_end_date %>
-    <p>Project end date: <%= @project.end_date %></p>
+  <% if @project.end_date %>
+    <p>Project end date <%= @project.is_current ? "is" : "was" %> <%= @project.end_date_display %>.</p>
   <% end %>
 </div>
 
