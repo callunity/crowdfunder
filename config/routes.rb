@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy'
 
   resources :projects do
-    resources :tiers, only: [:new, :create, :show, :destroy]
+    resources :tiers, only: [:new, :create, :show, :destroy] 
   end
-  resources :users, only: [:new, :create, :show]
+
+  resources :users, only: [:new, :create, :show] do
+    resources :pledges, only: [:index, :show, :destroy]
+  end
+    post 'new_pledge' => 'pledges#create'
+
   resources :sessions, only: [:new, :create, :destroy]
 
   root 'projects#index'
