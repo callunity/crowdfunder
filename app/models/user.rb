@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
     self.pledges.inject(0) { |sum, pledge| sum + pledge.amount }
   end
 
-  # these projects' end date has passed
+  # these projects' end date has passed AND they were funded
   def successful_backed_projects
-    self.backed_projects.select { |project| project.end_date < Time.now }
+    self.backed_projects.select { |project| (project.end_date < Time.now) && (project.is_funded) }
   end
 
   # these projects' end date is in the future
@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
     self.backed_projects.select { |project| project.end_date > Time.now }
   end
 
-  # these pledges refer to projects whose end date has passed
+  # these pledges refer to projects whose end date has passed AND project was funded
   def collected_pledges
-    pledges = self.pledges.select { |pledge| pledge.project.end_date < Time.now}
+    pledges = self.pledges.select { |pledge| (pledge.project.end_date < Time.now) && (pledge.project.is_funded) }
     pledges.inject(0) { |sum, pledge| sum + pledge.amount }
   end
 

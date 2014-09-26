@@ -1,13 +1,21 @@
-<h2><%= @project.name %></h2>
+<h1><%= @project.name %></h1>
 
-<div class="goal">
+<div class="funding">
+  <h2>Funding Raised: $<%= @project.current_funding %></h2>
   <h3>Funding Goal: $<%= @project.goal %></h3>
+
+  <% if @project.is_funded %>
+    <p class="is_funded">This project has met its goal! Everybody wins!</p>
+  <% end %>
+
+  <!-- # cut out this conditional when seeds are fixed -->
   <% if @project_end_date %>
     <p>Project end date: <%= @project.end_date %></p>
   <% end %>
 </div>
 
 <div class="description">
+  <h2>About the project:</h2>
   <p><%= @project.description %></p>
 </div>
 
