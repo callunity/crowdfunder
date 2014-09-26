@@ -10,7 +10,10 @@
 
   <!-- # cut out this conditional when seeds are fixed -->
   <% if @project.end_date %>
-    <p>Project end date <%= @project.is_current ? "is" : "was" %> <%= @project.end_date_display %>.</p>
+    <p>Project end date <%= @project.is_current ? "is" : "was" %> <%= @project.end_date_display %>. 
+      <% if @project.is_current %>
+        <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em>
+      <% end %></p>
   <% end %>
 </div>
 
