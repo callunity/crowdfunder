@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
 
+  validates :start_date, :end_date, :name, presence: true
+  validates :goal, numericality: { only_integer: true }
+
   has_many :tiers
   accepts_nested_attributes_for :tiers, reject_if: :all_blank, allow_destroy: true
   has_many :pledges, through: :tiers
