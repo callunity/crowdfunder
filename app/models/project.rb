@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
 
-  validates :start_date, :end_date, :name, presence: true
+  validates :start_date, :end_date, presence: true
   validates :goal, numericality: { only_integer: true }
+    validates :name, presence: true, uniqueness: { case_sensitive: false }
+
 
   has_many :tiers
   accepts_nested_attributes_for :tiers, reject_if: :all_blank, allow_destroy: true
@@ -26,6 +28,11 @@ class Project < ActiveRecord::Base
   end
 
   def end_date_display
-    self.end_date.to_time.strftime('%A, %B %e, %Y')
+    self.end_date.to_date.to_s(:long_ordinal)
   end
+
+  def start_date_display
+    self.start_date.to_date.to_s(:long_ordinal)
+  end
+
 end

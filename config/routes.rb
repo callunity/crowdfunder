@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :show] do
-    resources :pledges, only: [:index, :create, :show, :destroy]
+    resources :pledges, only: [:index, :show, :destroy]
   end
-    post 'pledge' => 'pledges#new_pledge'
+    post 'new_pledge' => 'pledges#create'
 
   resources :sessions, only: [:new, :create, :destroy]
 

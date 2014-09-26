@@ -28,6 +28,5 @@ class UsersController < ApplicationController
     session[:user_id] = @user.id
     current_user = @user
   end
-  helper_method :auto_login
 
 end

@@ -4,10 +4,11 @@
 
 <div id="all-projects">
   <% @projects.each do |project| %>
-    <p><%= link_to project.name, project_path(project) %><br>
-    <%= project.description %><br>
-    Goal: $<%= project.goal %><br>
-    <%= project.end_date %>
+    <p>
+	    <%= link_to project.name, project_path(project) %> <br>
+	    <%= project.description %> <br>
+	    Goal: $<%= project.goal %> <br>
+	    End Date: <%= project.end_date.to_date.to_s(:long_ordinal) if project.end_date %>
     </p>
   <% end %>
 </div>
