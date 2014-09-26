@@ -1,5 +1,4 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<p><%= @user.email %></p>
 
 <div class="backed-projects">
 <h3><%= @user.first_name %> has backed <%= @user.backed_projects.count %> projects:</h3>
@@ -12,12 +11,14 @@
       <h5><%= link_to project.name, project_path(project) %></h5>
   <% end %>
 
-  <h4>Projects still running</h4>
-  <% if @user == current_user %>
-    <p>You've committed $<%= @user.uncommitted_pledges %> towards <%= @user.unexpired_projects.length %> which haven't yet reached their project end date. Help them make their findal push!</p>
-  <% end %>
-  <% @user.unexpired_projects.each do |project| %>
-    <h5><%= link_to project.name, project_path(project) %></h5>
+  <% if @user.unexpired_projects.length > 0 %>
+    <h4>Projects still running</h4>
+    <% if @user == current_user %>
+      <p>You've committed $<%= @user.uncommitted_pledges %> towards <%= @user.unexpired_projects.length %> which haven't yet reached their project end date. Help them make their final push!</p>
+    <% end %>
+    <% @user.unexpired_projects.each do |project| %>
+      <h5><%= link_to project.name, project_path(project) %></h5>
+    <% end %>
   <% end %>
 
 </div>
