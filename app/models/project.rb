@@ -13,4 +13,12 @@ class Project < ActiveRecord::Base
   def is_funded
     self.current_funding > self.goal
   end
+
+  def is_current
+    self.end_date > Time.now
+  end
+
+  def is_expired
+    self.end_date < Time.now
+  end
 end
