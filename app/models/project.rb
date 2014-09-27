@@ -24,7 +24,7 @@ class Project < ActiveRecord::Base
   end
 
   def is_expired?
-    self.end_date < Time.now
+    self.end_date <= Time.now
   end
 
   def end_date_display
