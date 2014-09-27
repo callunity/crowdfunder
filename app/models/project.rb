@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
 
-  validates :start_date, :end_date, presence: true
+  validates :start_date, :end_date, :goal, presence: true
   validates :goal, numericality: { only_integer: true }
-    validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 
 
   has_many :tiers
@@ -15,15 +15,15 @@ class Project < ActiveRecord::Base
     self.pledges.all.inject(0) { |sum, pledge| sum + pledge.amount }
   end
 
-  def is_funded
-    self.current_funding > self.goal
+  def is_funded?
+    self.current_funding >= self.goal
   end
 
-  def is_current
+  def is_current?
     self.end_date > Time.now
   end
 
-  def is_expired
+  def is_expired?
     self.end_date < Time.now
   end
 

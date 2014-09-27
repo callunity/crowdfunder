@@ -4,12 +4,12 @@
   <% if @user.owned_projects.count > 0 %>
     <h3><%= @user == current_user ? "Your" : "#{@user.first_name}'s" %> Projects</h3>
     <% @user.owned_projects.each do |project| %>
-      <p><%= link_to project.name, project_path(project) if project.is_current %><br> 
+      <p><%= link_to project.name, project_path(project) if project.is_current? %><br> 
         <%= distance_of_time_in_words(project.end_date, Time.now) %> left.</p>
     <% end %>
     <h5>Past Projects</h5>
     <% @user.owned_projects.each do |project| %>
-      <p><%= link_to project.name, project_path(project) if !project.is_current %></p>
+      <p><%= link_to project.name, project_path(project) if !project.is_current? %></p>
     <% end %>
   <% else %>
     <p><%= link_to "Set up your first project!", new_project_path %></p>
