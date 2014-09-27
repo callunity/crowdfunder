@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
 
   def current_funding
-    self.pledges.all.inject(0) { |sum, pledge| sum + pledge.amount }
+    self.pledges.sum(:amount)
   end
 
   def is_funded?
