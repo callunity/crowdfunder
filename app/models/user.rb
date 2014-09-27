@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :backed_projects, through: :pledges, source: :project
 
   def total_money
-    self.pledges.inject(0) { |sum, pledge| sum + pledge.amount }
+    self.pledges.sum(:amount)
   end
 
   # these projects' end date has passed AND they were funded
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   # these pledges refer to projects whose fate is still unknown
   def uncommitted_pledges
     pledges = self.pledges.select { |pledge| pledge.project.is_current? }
-    pledges.inject(0) { |sum, pledge| sum + pledge.amount }
+    pledges.sum(:amount)
   end
 
 end
