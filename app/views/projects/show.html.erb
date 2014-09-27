@@ -12,9 +12,9 @@
   <% if @project.end_date %>
     <p>Project end date <%= @project.is_current? ? "is" : "was" %> <%= @project.end_date_display %>. 
       <% if @project.is_current? %>
-        <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em><br>
+        <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em>
       <% end %>
-      Project start date: <%= @project.start_date_display %>.</p>
+      <br>Project start date: <%= @project.start_date_display %>.</p>
   <% end %>
 
 </div>
