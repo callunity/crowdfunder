@@ -4,18 +4,19 @@
   <h2>Funding Raised: $<%= @project.current_funding %></h2>
   <h3>Funding Goal: $<%= @project.goal %></h3>
 
-  <% if @project.is_funded %>
+  <% if @project.is_funded? %>
     <p class="is_funded">This project has met its goal! Everybody wins!</p>
   <% end %>
 
-  <!-- # cut out this conditional when seeds are fixed -->
-  <% if @project.end_date %>
-    <p>Project end date <%= @project.is_current ? "is" : "was" %> <%= @project.end_date_display %>. 
-      <% if @project.is_current %>
-        <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em><br>
-      <% end %>
-      Project start date: <%= @project.start_date_display %>.</p>
-  <% end %>
+  <p>
+    Project end date <%= @project.is_current? ? "is" : "was" %> <%= date_display(@project.end_date) %>. 
+  
+    <% if @project.is_current? %>
+      <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em>
+    <% end %>
+  
+    <br>Project start date: <%= date_display(@project.start_date) %>.
+  </p>
 
 </div>
 
@@ -31,10 +32,9 @@
       <strong>Pledge $<%= tier.amount %></strong> <br>
       <strong>Get: </strong><%= tier.description %> <br>
     
-      <% if current_user.id != @project.owner_id %>
+      <% if current_user && current_user.id != @project.owner_id %>
         <%= button_to "Get this!", new_pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount } %>
       <% end %>
-
     </p> 
   <% end %>
 </div>
