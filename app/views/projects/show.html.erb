@@ -1,13 +1,26 @@
-<h2><%= @project.name %></h2>
+<h1><%= @project.name %></h1>
 
-<div class="goal">
+<div class="funding">
+  <h2>Funding Raised: $<%= @project.current_funding %></h2>
   <h3>Funding Goal: $<%= @project.goal %></h3>
 
-  <p>Project start date: <%= @project.start_date.to_date.to_s(:long_ordinal) if @project.start_date %></p>
-  <p>Project end date: <%= @project.end_date.to_date.to_s(:long_ordinal) if @project.start_date %></p>
+  <% if @project.is_funded? %>
+    <p class="is_funded">This project has met its goal! Everybody wins!</p>
+  <% end %>
+
+  <!-- # cut out this conditional when seeds are fixed -->
+  <% if @project.end_date %>
+    <p>Project end date <%= @project.is_current? ? "is" : "was" %> <%= @project.end_date_display %>. 
+      <% if @project.is_current? %>
+        <em>Only <%= distance_of_time_in_words(@project.end_date, Time.now) %> left!</em>
+      <% end %>
+      <br>Project start date: <%= @project.start_date_display %>.</p>
+  <% end %>
+
 </div>
 
 <div class="description">
+  <h2>About the project:</h2>
   <p><%= @project.description %></p>
 </div>
 
@@ -21,6 +34,7 @@
       <% if current_user.id != @project.owner_id %>
         <%= button_to "Get this!", new_pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount } %>
       <% end %>
+
     </p> 
   <% end %>
 </div>

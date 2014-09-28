@@ -1,2 +1,42 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<p><%= @user.email %></p>
+
+<div class="owned-projects">
+  <% if @user.owned_projects.count > 0 %>
+    <h3><%= @user == current_user ? "Your" : "#{@user.first_name}'s" %> Projects</h3>
+    <% @user.owned_projects.each do |project| %>
+      <p><%= link_to project.name, project_path(project) if project.is_current? %><br> 
+        <%= distance_of_time_in_words(project.end_date, Time.now) %> left.</p>
+    <% end %>
+    <h5>Past Projects</h5>
+    <% @user.owned_projects.each do |project| %>
+      <p><%= link_to project.name, project_path(project) if !project.is_current? %></p>
+    <% end %>
+  <% else %>
+    <p><%= link_to "Set up your first project!", new_project_path %></p>
+  <% end %>
+</div>
+
+
+<div class="backed-projects">
+<h3><%= @user == current_user ? "You have" : "#{@user.first_name} has" %> backed <%= @user.successful_backed_projects.count %> projects:</h3>
+  
+  <h4>Successfully funded projects</h4>
+  <% if @user == current_user %>
+      <p>You've contributed $<%= @user.collected_pledges %> towards <%= @user.successful_backed_projects.length %> successfully funded projects!</p>
+  <% end %>
+  <% @user.successful_backed_projects.each do |project| %>
+      <h5><%= link_to project.name, project_path(project) %></h5>
+  <% end %>
+
+  <% if @user.unexpired_projects.length > 0 %>
+    <h4>Projects still running</h4>
+    <% if @user == current_user %>
+      <p>You've committed $<%= @user.uncommitted_pledges %> towards <%= @user.unexpired_projects.length %> which haven't yet reached their project end date. Help them make their final push!</p>
+    <% end %>
+    <% @user.unexpired_projects.each do |project| %>
+      <h5><%= link_to project.name, project_path(project) %></h5>
+    <% end %>
+  <% end %>
+
+</div>
+

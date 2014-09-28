@@ -36,6 +36,9 @@ gem 'cocoon'
 
 gem 'pry-rails'
 
+# Using ActsAsTaggableOn for comments
+gem 'acts-as-taggable-on', '~> 3.4'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
