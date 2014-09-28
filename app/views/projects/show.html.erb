@@ -39,4 +39,15 @@
   <% end %>
 </div>
 
+<div class="comments">
+  <%= form_for [@project, @comment] do |c| %>
+    <div class='field'>
+      <%= c.label :body %>
+      <%= c.text_area :body %>
+    </div>
+
+    <%= c.submit %>
+  <% end %>
+</div>
+
 <%= link_to 'All Projects', projects_path %>

@@ -12,8 +12,6 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :comments, as: :commentable
 
-  acts_as_taggable_on :comments
-
   def current_funding
     self.pledges.sum(:amount)
   end

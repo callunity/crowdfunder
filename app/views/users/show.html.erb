@@ -41,5 +41,16 @@
     <% end %>
   <% end %>
 
+<div class="comments">
+  <%= form_for [@user, @comment] do |c| %>
+    <div class='field'>
+      <%= c.label :body %>
+      <%= c.text_area :body %>
+    </div>
+
+    <%= c.submit %>
+  <% end %>
+</div>
+
 </div>
 
