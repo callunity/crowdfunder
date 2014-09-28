@@ -10,6 +10,9 @@ class Project < ActiveRecord::Base
   has_many :pledges, through: :tiers
   has_many :backers, through: :pledges, class_name: "User"
   belongs_to :owner, class_name: "User"
+  has_many :comments, as: :commentable
+
+  acts_as_taggable_on :comments
 
   def current_funding
     self.pledges.sum(:amount)
