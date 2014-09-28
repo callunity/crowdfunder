@@ -8,10 +8,12 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tiers, only: [:new, :create, :show, :destroy] 
+    resources :comments
   end
 
   resources :users, only: [:new, :create, :show] do
     resources :pledges, only: [:index, :show, :destroy]
+    resources :comments
   end
     post 'new_pledge' => 'pledges#create'
 
