@@ -24,14 +24,14 @@ class User < ActiveRecord::Base
 
   # these pledges refer to projects whose end date has passed AND project was funded
   def collected_pledges
-    pledges = self.pledges.select { |pledge| pledge.project.is_expired? && pledge.project.is_funded? }
-	  pledges.sum(&:amount)
+    found_pledges = self.pledges.select { |pledge| pledge.project.is_expired? && pledge.project.is_funded? }
+	  found_pledges.sum(&:amount)
   end
 
   # these pledges refer to projects whose fate is still unknown
   def uncommitted_pledges
-    pledges = self.pledges.select { |pledge| pledge.project.is_current? }
-    pledges.sum(&:amount)
+    found_pledges = self.pledges.select { |pledge| pledge.project.is_current? }
+    found_pledges.sum(&:amount)
   end
 
 end
