@@ -1,0 +1,8 @@
+<p>
+  <strong>Pledge $<%= tier.amount %></strong> <br>
+  <strong>Get: </strong><%= tier.description %> <br>
+
+  <% if current_user && current_user.id != @project.owner_id %>
+    <%= button_to "Get this!", new_pledge_path, method: :post, params: { tier: tier.id, amount: tier.amount }, remote: true %>
+  <% end %>
+</p> 
