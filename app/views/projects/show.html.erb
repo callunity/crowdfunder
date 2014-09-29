@@ -26,8 +26,12 @@
 </div>
 
 <h3>Pledge Tiers</h3>
+<% if current_user && current_user.backed_projects.include?(@project) %>
+  <p>You are already backing this project for $<%= current_user.pledges.find(@project).amount %></p>
+<% else %>
 <div id="tiers">
   <%= render @project.tiers %>  
 </div>
+<% end %>
 
 <%= link_to 'All Projects', projects_path %>
