@@ -40,14 +40,24 @@
 </div>
 
 <div class="comments">
-  <%= form_for [@project, @comment] do |c| %>
-    <div class='field'>
-      <%= c.label :body %>
-      <%= c.text_area :body %>
-    </div>
-
-    <%= c.submit %>
+  <h2>Talk about the project</h2>
+  <% if @project.comments %>
+    <% @project.comments.each do |comment| %>
+      <%= comment.body %><br>
+    <% end %>
   <% end %>
+
+  <div class="new-comment">
+    <h3>Add a comment</h3>
+    <%= form_for [@project, @comment] do |c| %>
+      <div class='field'>
+        <%= c.label :body %> <br>
+        <%= c.text_area :body %>
+      </div>
+
+      <%= c.submit %>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to 'All Projects', projects_path %>
