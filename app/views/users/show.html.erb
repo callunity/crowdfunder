@@ -41,16 +41,28 @@
     <% end %>
   <% end %>
 
-<div class="comments">
-  <%= form_for [@user, @comment] do |c| %>
-    <div class='field'>
-      <%= c.label :body %>
-      <%= c.text_area :body %>
-    </div>
+</div>
 
-    <%= c.submit %>
+<div class="comments">
+  <h2>Talk about this user</h2>
+  <% if @user.comments %>
+    <% @user.comments.each do |comment| %>
+      <%= comment.body %> <br>
+    <% end %>
+  <% end %>
+
+  <% if current_user != @user %>
+    <div class="new-comment">
+      <h3>Add a comment</h3>
+      <%= form_for [@user, @comment] do |c| %>
+        <div class='field'>
+          <%= c.label :body %> <br>
+          <%= c.text_area :body %>
+        </div>
+        <%= c.submit %>
+      <% end %>
+    </div>
   <% end %>
 </div>
 
-</div>
 
