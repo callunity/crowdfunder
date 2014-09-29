@@ -1,7 +1,7 @@
 <h1><%= @project.name %></h1>
 
 <div class="funding">
-  <h2>Funding Raised: $<%= @project.current_funding %></h2>
+  <h2>Funding Raised: $<span id="funding-raised"><%= @project.current_funding %></span></h2>
   <h3>Funding Goal: $<%= @project.goal %></h3>
 
   <% if @project.is_funded? %>

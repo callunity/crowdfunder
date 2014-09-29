@@ -1,1 +1,2 @@
-$('#tiers').html('You have contributed $<%= @pledge.amount %> to this project!')
+$('#tiers').html('You have contributed $<%= @pledge.amount %> to this project!');
+$('#funding-raised').html('<%= @pledge.project.current_funding %>');
