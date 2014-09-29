@@ -10,10 +10,14 @@ class PledgesController < ApplicationController
     @pledge.tier_id = params[:tier]
     @pledge.amount = params[:amount]
 
-    if @pledge.save
-      redirect_to user_path(@pledge.backer_id), notice: "You are now backing this project!"
-    else
-      redirect_to projects_path, alert: "Uh, we've encountered a problem. Please try again!"
+    respond_to do |format|
+      if @pledge.save
+        format.html { redirect_to user_path(@pledge.backer_id), notice: "You are now backing this project!" }
+        format.js
+      else
+        redirect_to projects_path, alert: "Uh, we've encountered a problem. Please try again!"
+        format.js {flash.alert = "Uh, we've encountered a problem. Please try again!" }
+      end
     end
   end
 
