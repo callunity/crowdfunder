@@ -2,12 +2,21 @@ class CommentsController < ApplicationController
   before_action :load_commentable
 
   def create
-    @commentable.comments.create(comment_params)
+    @comment = @commentable.comments.build(comment_params)
+    @comment.user_id = current_user.id
     
-    if params[:project_id]
-      redirect_to project_path(@commentable) 
-    else
-      redirect_to user_path(@commentable)
+    if @comment.save
+      if params[:project_id]
+        redirect_to project_path(@commentable) 
+      else
+        redirect_to user_path(@commentable)
+      end
+    else 
+      if params[:project_id]
+        redirect_to project_path(@commentable), alert: "Something went wrong! Please try again." 
+      else
+        redirect_to user_path(@commentable), alert: "Something went wrong! Please try again."
+      end
     end
   end
 
