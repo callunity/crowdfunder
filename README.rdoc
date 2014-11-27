@@ -1,28 +1,25 @@
-== README
+== Seat Yourself
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Bitmaker Labs assignment to create a basic clone of OpenTable. Topics covered include:
+* More indepth model associations
+* PostgreSQL
+* Pry
+* Working in a group
+* User story creation, project mapping, and mockups
+* Callbacks 
 
-Things you may want to cover:
+Assumptions:
+- Each Restaurant has 100 seats available (though we've limited this to 10 for testing purposes).
+- Each Reservation lasts for 1 hour.
+- Reservations can only be made on the hour.
+- Restaurant hours are 11am–8pm, 7 days a week.
 
-* Ruby version
+Areas for future development:
+- Allow for bookings on the half-hour.
+- Add a numerical rating system.
+- Add more filtering (rating, price, amenities).
+- Show daily deals for restaurants.
+- Use ActsAsTaggable for types of cuisine, meal type (breakfast, lunch, dinner).
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Minor fixes:
+- normalize phone number input so that it only accepts 10 digits (3-3-4 fields? "write it like this"?)
